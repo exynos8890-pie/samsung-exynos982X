@@ -3,7 +3,7 @@ name: Build
 on: [push]
 
 env:
-  TOOLCHAIN: cruel
+  TOOLCHAIN: default
   INSTALLER: yes
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        model: [ "G970F,G973F,G975F", "N975F" ]
+        model: [ "N976B", "N976N", "G973F" ]
 
     steps:
       - uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
           set -e -o pipefail
           ./cruelbuild config                    \
                        model=${{ matrix.model }} \
-                       name="Cruel-devel"        \
+                       name="4lu-Cruel"          \
                        toolchain=$TOOLCHAIN      \
                        +magisk                   \
                        +nohardening              \
@@ -67,6 +67,13 @@ jobs:
                        +force_dex_wqhd           \
                        +morosound                \
                        +boeffla_wl_blocker       \
+                       +performance              \
+                       +force_dex_wqhd           \
+                       +noaudit                  \
+                       +usb_serial               \
+                       +fake_config              \
+                       +nomodules                \
+                       +always_permit            \
           2>&1 | tee config.info
 
       - name: Install gcc-aarch64-linux-gnu
