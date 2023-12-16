@@ -57,7 +57,8 @@ jobs:
                        model=${{ matrix.model }} \
                        name="4lu-Cruel"                \
                        toolchain=$TOOLCHAIN      \
-                       +magisk             \
+                       -magisk             \
+                       +kernelsu             \
                        +nohardening              \
                        +ttl                      \
                        +wireguard                \
