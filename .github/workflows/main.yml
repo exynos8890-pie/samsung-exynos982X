@@ -55,9 +55,10 @@ jobs:
           set -e -o pipefail
           ./cruelbuild config                    \
                        model=${{ matrix.model }} \
-                       name="4lu-Cruel"          \
+                       name="4lu-Cruel"                \
                        toolchain=$TOOLCHAIN      \
-                       +magisk                   \
+                       -magisk             \
+                       +kernelsu             \
                        +nohardening              \
                        +ttl                      \
                        +wireguard                \
